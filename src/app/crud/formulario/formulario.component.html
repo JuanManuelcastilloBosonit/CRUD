@@ -1,0 +1,60 @@
+<div class="row" style="margin:10px ;">
+    <div class="col-md-6" >
+        <h3>Formulario de Registro</h3>
+        <form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="guardar()">
+            <div class="row mb-1">
+                <div class="col-sm-5">
+                    <label for="text" class="col-sm-9 col-form-label">Nombre Usuario</label>
+                    <input formControlName="nombre" type="text" class="form-control" placeholder="Nombre Usuario">
+                    <span class="form-text text-danger" *ngIf="campoNoValido('nombre')">Minimo 3 caracteres</span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-5">
+                    <label for="text" class="col-sm-9 col-form-label">Contraseña</label>
+                    <input formControlName="password" type="password" class="form-control" placeholder="Contraseña">
+                    <span class="form-text text-danger" *ngIf="campoNoValido('password')">Minimo 6 caracteres</span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-5">
+                    <label for="text" class="col-sm-9 col-form-label">Correo</label>
+                    <input formControlName="email" type="email" class="form-control" placeholder="Correo electronico">
+                    <span class="form-text text-danger" *ngIf="campoNoValido('email')">Debe introducir un email</span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-5">
+                    <input formControlName="oferta" type="checkbox" class="form-check-input" >
+                    <label for="flexSwitchCheckChecked" class="form-check-label">Enviame Ofertas promocionales</label>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-5">
+                    <label for="text" class="col-sm-9 col-form-label">Pais</label>
+                    <select formControlName="pais" class="form-control" id="pais">
+                        <option value="">Seleccione un pais</option>
+                        <option *ngFor="let pais of paises">{{pais.name}}</option>
+                    </select>
+                    <span class="form-text text-danger" *ngIf="campoNoValido('pais')">Debe elegir un pais</span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-5">
+                    <label for="text" class="col-sm-9 col-form-label">Ciudad</label>
+                    <input formControlName="ciudad" type="text" class="form-control" placeholder="Ciudad">
+                    <span class="form-text text-danger" *ngIf="campoNoValido('ciudad')">Debe introducir una ciudad</span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-5">
+                    <button class="btn btn-primary" type="submit">Crear</button>
+                </div>
+            </div>
+        </form>
+        
+    </div>
+    <div class="col">
+        <app-lista (usu)="actualizar($event)" [usuarioInput]="usuarios"></app-lista>
+    </div>
+</div>
